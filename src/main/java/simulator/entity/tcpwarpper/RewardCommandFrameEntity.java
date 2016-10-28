@@ -15,7 +15,7 @@ public class RewardCommandFrameEntity extends FrameEntity {
     private String serialNum;//序列号
     private String machineNum;//机器号
     private String waterTapNum;//水龙头号。
-    private int commandCode;//命名码。
+    private int commandCode;//命令码。
     private int waterAmount;//水量。
     private Date date;//时间戳。
     public SendMsgType type = SendMsgType.REWARD_COMMAND;
