@@ -46,6 +46,12 @@ public interface ComWLMK {
     //接收到缓冲队列
     void fill2BufferQueue();
 
+    //清理缓冲队列中的
+    boolean cleanBufferQueue() ;
+
+    //清空缓冲队列
+    void emptyBufferQueue() ;
+
     //从队列中找到接收到的协议包(目前只允许缓冲队列中存在不相同的协议包)
     FrameEntity chooseOnePakcet(SendMsgType type);
 
