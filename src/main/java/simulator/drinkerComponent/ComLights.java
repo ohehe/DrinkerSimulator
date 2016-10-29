@@ -10,28 +10,30 @@ import java.util.Arrays;
  * @author Administrator
  * @create 2016-10-28 10:02
  */
-public interface ComLights {
+public abstract class ComLights {
     //状态
-    State tempState = State.OFF;
+    protected State tempState = State.OFF;
     //指示灯保持时间
-    long keepMilliseconds = 0;
+  protected   long keepMilliseconds = 0;
 
-    public boolean turnOff();
+    public abstract boolean turnOff();//抽象方法。
 
-    public boolean turnOn();
+    public abstract boolean turnOn();
 
     //放水中途
-    public void dunringDrawOff();
+    public abstract void dunringDrawOff();
 
     //设置故障
     //设为需要的状态 和保持的时间
-    public void causeMalfunction(State state, long keepMillisecond);
+    public abstract void causeMalfunction(State state, long keepMillisecond);
 
-    enum State {
+    protected enum State {
         ON("常开状态", new byte[]{1, 1}),
         OFF("关闭状态", new byte[]{0, 1}),
         ERROR("异常状态", new byte[]{0, 0}),
         BLINK("闪烁状态", new byte[]{1, 0});
+        //以上定义一个枚举变量来标志饮水机的状态信息。
+
         private String stateStr;
         private byte stateCode[];
 

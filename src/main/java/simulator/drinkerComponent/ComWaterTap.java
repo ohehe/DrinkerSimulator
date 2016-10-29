@@ -11,25 +11,25 @@ import java.util.Arrays;
  * @author Administrator
  * @create 2016-10-28 10:31
  */
-public interface ComWaterTap {
+public abstract class ComWaterTap {//定义抽象类
     //状态变量
-    State tempState = State.OFF;
+    protected   State tempState = State.OFF;
     //龙头打开状态保持时间
-    long keepOnMillisecond = 0;
+    protected long keepOnMillisecond = 0;
 
-    public boolean turnOff();
+    public abstract boolean turnOff();//定义抽象方法。
 
-    public boolean turnOn();
+    public abstract boolean turnOn();
 
-    public void dunringDrawOff();
+    public abstract void dunringDrawOff();
 
-    public boolean checkTemperature();
+    public abstract boolean checkTemperature(ComWaterTemperature comWaterTemperature,int temperature);
 
     //设置故障
     //设为需要的状态 和异常状态的保持时间
-    public void causeMalfunction(State state, long keepMillisecond);
+    public abstract void causeMalfunction(State state, long keepMillisecond);
 
-    enum State {
+    protected enum State {
         ON("开状态", new byte[]{1, 1, 1}),
         OFF("关状态", new byte[]{1, 1, 0}),
         ERROR_KEEPOFF("无法打开", new byte[]{0, 0, 0}),

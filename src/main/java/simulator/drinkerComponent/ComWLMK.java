@@ -16,46 +16,60 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @author Administrator
  * @create 2016-10-28 15:37
  */
-public interface ComWLMK {
+public abstract class ComWLMK {
     //状态变量
-    State tempState = State.OFF;
+   protected State tempState = State.OFF;
     //网络传输对象
-    TCPDataTransmitter tcpTransmitter = null;
+   protected TCPDataTransmitter tcpTransmitter = null;
     //接收缓冲队列
-    ConcurrentLinkedQueue<FrameEntity> BufferingQueue = new ConcurrentLinkedQueue<FrameEntity>();
     //人为设定平均TCP传输时延(毫秒)
-    long transmitDelay = 100;
+   protected long transmitDelay = 100;
     //人为设定超时的TCP传输递增时延(毫秒)
-    long transmitDelayAdd = 1000;
+   protected long transmitDelayAdd = 1000;
     //发送包计数
-    long countOfSendPack = 0;
+   protected long countOfSendPack = 0;
     //接收包计数
-    long countOfSecvPack = 0;
+   protected long countOfRecvPack = 0;
+
+    public long getCountOfSendPack() {
+        return countOfSendPack;
+    }
+
+    public long getCountOfRecvPack() {
+        return countOfRecvPack;
+    }
+
+    public State getTempState() {
+        return tempState;
+    }
+
     //故障记录
-    LinkedHashMap<String, Exception> errorsRecord = new LinkedHashMap<String, Exception>();
+   protected LinkedHashMap<String, Exception> errorsRecord = new LinkedHashMap<String, Exception>();
+   public ConcurrentLinkedQueue<FrameEntity> bufferingQueue = new ConcurrentLinkedQueue<FrameEntity>();
 
     //计数+1
-    void countSendingOnePack();
+  public   abstract  void countSendingOnePack();
 
     //计数+1
-    void countRecvingOnePack();
+    public   abstract void countRecvingOnePack();
+
 
     //发送一条数据
-    boolean sendProtocolMsg(byte[] msgPacket);
+    public   abstract boolean sendProtocolMsg(byte[] msgPacket);
 
     //接收到缓冲队列
-    void fill2BufferQueue();
+    public   abstract void fill2BufferQueue();
 
     //清理缓冲队列中的
-    boolean cleanBufferQueue() ;
+    public   abstract boolean cleanBufferQueue() ;
 
     //清空缓冲队列
-    void emptyBufferQueue() ;
+    public   abstract void emptyBufferQueue() ;
 
     //从队列中找到接收到的协议包(目前只允许缓冲队列中存在不相同的协议包)
-    FrameEntity chooseOnePakcet(SendMsgType type);
+    public   abstract FrameEntity chooseOnePakcet(SendMsgType type);
 
-    enum State {
+    protected enum State {
         ON("开状态", new byte[]{1, 1, 1}),
         OFF("关状态", new byte[]{1, 1, 0}),
         ERROR_KEEPOFF("无法打开", new byte[]{0, 0, 0}),

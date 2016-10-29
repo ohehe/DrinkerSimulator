@@ -18,6 +18,10 @@ public class Constants {
     public static final int RESULT_OK = 0;
     public static final int RESULT_ERROR = 1;
 
+    public static final int MACHINE_NUM_LEN = 14 ;
+    public static final int MACHINE_ROOM_TEMPTURE = 25  ;
+    public static final int MACHINE_MAX_TEMPTURE = 100  ;
+
     private Constants() {
     }
 }
