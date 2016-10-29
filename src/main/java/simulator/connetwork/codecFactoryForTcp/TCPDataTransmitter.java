@@ -13,10 +13,11 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
  * @create 2016-10-26 20:48
  */
 public class TCPDataTransmitter {
+    private static final long CONNECT_TIMEOUT = 30 * 1000L; //30秒
     private String hostName = "localhost";
     private int port = 8080;
-    private static final long CONNECT_TIMEOUT = 30 * 1000L; //30秒
     private NioSocketConnector connector;
+
 
     public TCPDataTransmitter(String hostName, int post) {
 
