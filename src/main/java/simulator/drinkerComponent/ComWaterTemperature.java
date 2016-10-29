@@ -1,39 +1,30 @@
-package simulator.drinkerComponent;/**
- * Created by Administrator on 2016/10/28.
- */
-
+package simulator.drinkerComponent;
 import java.util.Arrays;
-
 /**
- * 通用的指示灯接口
- *
- * @author Administrator
- * @create 2016-10-28 10:02
+ * Created by Administrator on 2016/10/29.
  */
-public abstract class ComLights {
-    //状态
-    protected State tempState = State.OFF;
-    //指示灯保持时间
-  protected   long keepMilliseconds = 0;
+public abstract class ComWaterTemperature {
 
-    public abstract boolean turnOff();//抽象方法。
+    protected long temperature;//当前水温。
+    protected State tempState = State.OFF;//加热或开关状态。
+    protected long HeatMillisecond = 0;
 
-    public abstract boolean turnOn();
+    public abstract boolean turnOff();//定义抽象方法关闭冷却。
 
-    //放水中途
-    public abstract void dunringDrawOff();
-
-    //设置故障
-    //设为需要的状态 和保持的时间
     public abstract void causeMalfunction(State state, long keepMillisecond);
 
-    protected enum State {
-        ON("常开状态", new byte[]{1, 1}),
-        OFF("关闭状态", new byte[]{0, 1}),
-        ERROR("异常状态", new byte[]{0, 0}),
-        BLINK("闪烁状态", new byte[]{1, 0});
-        //以上定义一个枚举变量来标志饮水机的状态信息。
+    public abstract boolean turnOn();//定义抽象方法打开加热。
 
+    //////////////////////////////////////////////////////
+
+    //以下定义水温状态的枚举类型。
+    protected enum State {
+        ON("加热状态", new byte[]{1, 1, 1}),
+        OFF("冷却状态", new byte[]{0, 0, 0}),
+        ERROR_HEATOFF("无法加热", new byte[]{0, 0, 1}),
+        ERROR_HEATON("无法冷却", new byte[]{0, 1, 1});
+        ;
+        //以下是定义枚举类型设置状态信息函数。
         private String stateStr;
         private byte stateCode[];
 
@@ -66,6 +57,4 @@ public abstract class ComLights {
                     '}';
         }
     }
-
-
 }
