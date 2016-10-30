@@ -19,11 +19,6 @@ public class Constants {
     public static final int MACHINE_ROOM_TEMPTURE = 25  ;
     public static final int MACHINE_MAX_TEMPTURE = 100  ;
     public static int MAX_MSG_LEN = 0xff;//最大正文长度。
-
-    public static final int MACHINE_NUM_LEN = 14 ;
-    public static final int MACHINE_ROOM_TEMPTURE = 25  ;
-    public static final int MACHINE_MAX_TEMPTURE = 100  ;
-
     private Constants() {
     }
 }
