@@ -73,7 +73,7 @@ public class DrinkerThread extends  Thread {
     public void run(){
         while(true){
             //1.判断开关状态
-
+            if(){}
             //2.1.关--结束线程 2.2.开--继续循环
             //3.检查网络模块是否正常
             //4.1正常--发送机器状态 并延时5秒  4.2不正常--每隔1min尝试重新发送或者continue
