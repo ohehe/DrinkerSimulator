@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public abstract class ComWaterTap {//定义抽象类
     //状态变量
-  protected   State tempState = State.OFF;
+    protected   State tempState = State.OFF;
     //龙头打开状态保持时间
     protected long keepOnMillisecond = 0;
 
@@ -23,7 +23,7 @@ public abstract class ComWaterTap {//定义抽象类
 
     public abstract void dunringDrawOff();
 
-    public abstract boolean checkTemperature();
+    public abstract boolean checkTemperature(ComWaterTemperature comWaterTemperature,int temperature);
 
     //设置故障
     //设为需要的状态 和异常状态的保持时间

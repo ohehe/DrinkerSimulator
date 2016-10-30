@@ -17,6 +17,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @create 2016-10-28 15:37
  */
 public abstract class ComWLMK {
+   public ConcurrentLinkedQueue<FrameEntity> bufferingQueue = new ConcurrentLinkedQueue<FrameEntity>();
     //状态变量
    protected State tempState = State.OFF;
     //网络传输对象
@@ -32,13 +33,25 @@ public abstract class ComWLMK {
    protected long countOfRecvPack = 0;
     //故障记录
    protected LinkedHashMap<String, Exception> errorsRecord = new LinkedHashMap<String, Exception>();
-    ConcurrentLinkedQueue<FrameEntity> BufferingQueue = new ConcurrentLinkedQueue<FrameEntity>();
+
+    public long getCountOfSendPack() {
+        return countOfSendPack;
+    }
+
+    public long getCountOfRecvPack() {
+        return countOfRecvPack;
+    }
+
+    public State getTempState() {
+        return tempState;
+    }
 
     //计数+1
   public   abstract  void countSendingOnePack();
 
     //计数+1
     public   abstract void countRecvingOnePack();
+
 
     //发送一条数据
     public   abstract boolean sendProtocolMsg(byte[] msgPacket);

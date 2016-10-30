@@ -51,7 +51,7 @@ public class TCPDataTransmitter {
 
     }
     //连接建立
-    boolean connectionEstablishment(){
+    public boolean connectionEstablishment(){
         //最多允许重试12次
         for(int i = 0 ; i < 12 ; ++i){
             try{
